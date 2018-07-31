@@ -1,0 +1,74 @@
+body {
+	font-family: monospace;
+  text-align: center;
+}
+.container {
+  border: 3px solid;
+}
+.game-header {
+  display: flex;
+  justify-content: space-between;
+}
+.result {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.game-title {
+  margin-top: 60px;
+}
+h1 {
+  font-size: 40px;
+}
+h2 {
+  font-size: 26px;
+}
+h3 {
+  font-size: 22px;
+  text-decoration: underline;
+}
+h4 {
+  font-size: 44px;
+}
+.game-buttons {
+  display: flex;
+  justify-content: center;
+}
+.rock, .paper, .scissors {
+  width: 160px;
+  height: 180px;
+  margin: 15px; 
+  opacity: 0.5;
+}
+.paper {
+  background: url('http://bachmacka.pl/files/Superkoders/papier.PNG') 0/cover;
+ }
+.rock {
+  background: url('http://bachmacka.pl/files/Superkoders/kamien.PNG') 0/cover;
+ }
+.scissors {
+  background: url('http://bachmacka.pl/files/Superkoders/nozyce.PNG') 0/cover;
+}
+.output {
+  height: 100px;
+  margin-top: 40px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.newgame {
+  width: 200px;
+	height: 50px;
+  border: 2px solid;
+  background-color: white;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+	font-size: 24px;
+  cursor: pointer;
+}
+.active {
+  opacity: 1.0;
+  cursor: pointer;
+}
+.hidden {
+  display: none;
+}
