@@ -2,7 +2,7 @@
 var output = document.getElementById('output');
 var buttonPaper = document.getElementById('paper');
 var buttonRock = document.getElementById('rock');
-var buttonScissor = document.getElementById('scissors');
+var buttonScissors = document.getElementById('scissors');
 var buttonNewGame = document.getElementById('newGame');
 
 var playerScore = 0;
@@ -14,10 +14,10 @@ var completeRounds =0;
 var blockButtons = function(){
   buttonPaper.setAttribute('disabled', true);
   buttonRock.setAttribute('disabled', true);
-  buttonScissor.setAttribute('disabled', true);
+  buttonScissors.setAttribute('disabled', true);
   buttonPaper.classList.remove('active');
   buttonRock.classList.remove('active')
-  buttonScissor.classList.remove('active');
+  buttonScissors.classList.remove('active');
   buttonNewGame.classList.remove('hidden');
 };
 //blokada przycisków gry
@@ -27,10 +27,10 @@ blockButtons ();
 var activeButtons = function(){
    buttonPaper.removeAttribute('disabled');
    buttonRock.removeAttribute('disabled');
-   buttonScissor.removeAttribute('disabled');
+   buttonScissors.removeAttribute('disabled');
    buttonPaper.classList.add('active');
    buttonRock.classList.add('active')
-   buttonScissor.classList.add('active');
+   buttonScissors.classList.add('active');
    buttonNewGame.classList.add('hidden');
 };
 
@@ -42,27 +42,35 @@ var scoreDestination = function(){
 };
 
 //funkcje uruchamiane po klknięciu w przyciski
-buttonRock.addEventListener('click', function () {
+/*buttonRock.addEventListener('click', function () {
   playerMove('kamień');
 });
 buttonPaper.addEventListener('click', function() {
   playerMove('papier');
 });
-buttonScissor.addEventListener('click', function() {
+buttonScissors.addEventListener('click', function() {
   playerMove('nożyce');
-});
+});*/
+var playerButtons= document.querySelectorAll('.player-move');
+var playerButtonsLength = playerButtons.length;
+for (var i = 0; i < playerButtonsLength; i++) {
+    playerButtons[i].addEventListener('click', function() {
+        playerMove(this.getAttribute('data-move'));
+    });
+};
+
 buttonNewGame.addEventListener('click', function() {
   maxRounds = window.prompt('Podaj liczbę rund do rozegrania');
-  
+
   playerScore = 0;
   computerScore = 0;
   completeRounds = 0;
   document.getElementById('maxRounds').innerHTML = maxRounds;
   scoreDestination();
-  
-  if (!maxRounds || isNaN(maxRounds) || maxRounds === ''){  
+
+  if (!maxRounds || isNaN(maxRounds) || maxRounds === ''){
    output.innerHTML = 'Podaj ilość rund!';
-   blockButtons(); 
+   blockButtons();
   }
   else {
    output.innerHTML = 'Zaczynamy! Wybierz swój ruch!';
@@ -96,20 +104,20 @@ var playerMove = function(playerMove) {
 var displayResults = function(winner, playerMove, computerMove) {
   if (winner === 'none') {
 		output.innerHTML = 'Remis! Wybrałeś '+ playerMove + ', komputer również wybrał ' + computerMove +'.'+'<br>';
-  completeRounds++;  
-	} 
+  completeRounds++;
+	}
   else if (winner === 'player') {
 		output.innerHTML = 'Wygrałeś! Wybrałeś ' + playerMove + ', a komputer wybrał ' + computerMove +'.'+'<br>';
   playerScore++;
-  completeRounds++; 
+  completeRounds++;
   }
   else {
 		output.innerHTML = 'Przegrałeś! Wybrałeś ' + playerMove + ', a komputer wybrał ' + computerMove +'.'+'<br>';
   computerScore++;
-  completeRounds++; 
+  completeRounds++;
   }
   scoreDestination();
-   
+
   if (maxRounds == completeRounds && playerScore > computerScore) {
     output.insertAdjacentHTML('beforeend','<br> Koniec gry! Wygrałeś! Naciśnij przycisk "Nowa gra", aby zagrać ponownie. <br>');
     blockButtons ();
@@ -122,4 +130,4 @@ var displayResults = function(winner, playerMove, computerMove) {
     output.insertAdjacentHTML('beforeend','<br> Koniec gry! Remis! Naciśnij przycisk "Nowa gra", aby zagrać ponownie. <br>');
     blockButtons ();
   }
-};
+};  

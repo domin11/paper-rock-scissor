@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="pl" >
 
 <head>
   <meta charset="UTF-8">
-  <title>Paper Rock Scissor extended</title>
-  
-  
-  
+  <title>Papier, kamień, nożyce</title>
+
+
+
       <link rel="stylesheet" href="css/style.css">
 
-  
+
 </head>
 
 <body>
-
-  <body>
  <div class="container">
    <div class="game-header">
      <div class="result">
@@ -32,25 +30,25 @@
    </div>
    <div class="game-buttons">
     <div>
-      <button id="paper" class="paper"></button>
+      <button id="paper" class="paper player-move" data-move="papier"></button>
     </div>
     <div>
-      <button id="rock" class="rock"></button>
+      <button id="rock" class="rock player-move" data-move="kamień"></button>
     </div>
     <div>
-      <button id="scissors" class="scissors"></button>
+      <button id="scissors" class="scissors player-move" data-move="nożyce"></button>
     </div>
   </div>
   <div>
     <h2>Runda: <span id="completeRounds">0</span>/<span id="maxRounds">0</span></h2>
-  </div>   
+  </div>
   <div id="output" class="output">Naciśnij przycisk "Nowa gra", aby zagrać.
   </div>
   <button id="newGame" class="newgame">Nowa gra</button>
- </div>  
+ </div>
 </body>
-  
-  
+
+
 
     <script  src="js/index.js"></script>
 
