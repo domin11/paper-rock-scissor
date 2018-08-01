@@ -20,7 +20,6 @@ var blockButtons = function(){
   buttonPaper.classList.remove('active');
   buttonRock.classList.remove('active')
   buttonScissors.classList.remove('active');
-  buttonNewGame.classList.remove('hidden');
 };
 //blokada przycisków gry
 blockButtons ();
@@ -43,16 +42,6 @@ var scoreDestination = function(){
   document.getElementById('completeRounds').innerHTML = params.completeRounds;
 };
 
-//funkcje uruchamiane po klknięciu w przyciski
-/*buttonRock.addEventListener('click', function () {
-  playerMove('kamień');
-});
-buttonPaper.addEventListener('click', function() {
-  playerMove('papier');
-});
-buttonScissors.addEventListener('click', function() {
-  playerMove('nożyce');
-});*/
 var playerButtons = document.querySelectorAll('.player-move');
 var playerButtonsLength = playerButtons.length;
 for (var i = 0; i < playerButtonsLength; i++) {
@@ -80,6 +69,7 @@ buttonNewGame.addEventListener('click', function() {
   }
 });
 
+
 //funkcja przypisująca ruchy komputera
 function getComputerMove() {
 var choices = ['papier', 'kamień', 'nożyce'];
@@ -102,6 +92,23 @@ var playerMove = function(playerMove) {
   displayResults(winner, playerMove, computerMove);
 };
 
+//Modal
+var showModal = function(selector) {
+    document.querySelector('#'+selector).classList.add('show');
+    buttonNewGame.classList.remove('hidden');
+};
+
+var hideModal = function(selector) {
+    document.querySelector(selector).classList.remove('show');
+};
+
+var closeButtons = document.querySelectorAll('.modal');
+for (var i = 0; i < closeButtons.length; i++) {
+    closeButtons[i].addEventListener('click', function(event) {
+        hideModal('#' + event.currentTarget.className.split(' ')[1]);
+    });
+}
+
 //funkcja odpowiedzialna za wyswietlenia wyników
 var displayResults = function(winner, playerMove, computerMove) {
   if (winner === 'none') {
@@ -120,16 +127,17 @@ var displayResults = function(winner, playerMove, computerMove) {
   }
   scoreDestination();
 
+//Wynik końcowy
   if (params.maxRounds == params.completeRounds && params.playerScore > params.computerScore) {
-    output.insertAdjacentHTML('beforeend','<br> Koniec gry! Wygrałeś! Naciśnij przycisk "Nowa gra", aby zagrać ponownie. <br>');
+    showModal('win');
     blockButtons ();
-  }
+    }
   else if (params.maxRounds == params.completeRounds && params.playerScore < params.computerScore) {
-    output.insertAdjacentHTML('beforeend','<br> Koniec gry! Przegrałeś! Naciśnij przycisk "Nowa gra", aby zagrać ponownie. <br>');
+    showModal('lost');
     blockButtons ();
-  }
+    }
   else if (params.maxRounds == params.completeRounds && params.playerScore == params.computerScore) {
-    output.insertAdjacentHTML('beforeend','<br> Koniec gry! Remis! Naciśnij przycisk "Nowa gra", aby zagrać ponownie. <br>');
+    showModal('draw');
     blockButtons ();
-  }
-};
+    }
+};  
