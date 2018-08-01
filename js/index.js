@@ -5,10 +5,12 @@ var buttonRock = document.getElementById('rock');
 var buttonScissors = document.getElementById('scissors');
 var buttonNewGame = document.getElementById('newGame');
 
-var playerScore = 0;
-var computerScore = 0;
-var maxRounds = 0;
-var completeRounds =0;
+var params = {
+  playerScore : 0,
+  computerScore : 0,
+  maxRounds : 0,
+  completeRounds : 0,
+};
 
 //funkcja blokująca przyciski po ukończonej grze
 var blockButtons = function(){
@@ -36,9 +38,9 @@ var activeButtons = function(){
 
 //funkcja wskazująca gdzie mają byc wyświetlane wyniki
 var scoreDestination = function(){
-  document.getElementById('playerScore').innerHTML = playerScore;
-  document.getElementById('computerScore').innerHTML = computerScore;
-  document.getElementById('completeRounds').innerHTML = completeRounds;
+  document.getElementById('playerScore').innerHTML = params.playerScore;
+  document.getElementById('computerScore').innerHTML = params.computerScore;
+  document.getElementById('completeRounds').innerHTML = params.completeRounds;
 };
 
 //funkcje uruchamiane po klknięciu w przyciski
@@ -51,7 +53,7 @@ buttonPaper.addEventListener('click', function() {
 buttonScissors.addEventListener('click', function() {
   playerMove('nożyce');
 });*/
-var playerButtons= document.querySelectorAll('.player-move');
+var playerButtons = document.querySelectorAll('.player-move');
 var playerButtonsLength = playerButtons.length;
 for (var i = 0; i < playerButtonsLength; i++) {
     playerButtons[i].addEventListener('click', function() {
@@ -60,15 +62,15 @@ for (var i = 0; i < playerButtonsLength; i++) {
 };
 
 buttonNewGame.addEventListener('click', function() {
-  maxRounds = window.prompt('Podaj liczbę rund do rozegrania');
+  params.maxRounds = window.prompt('Podaj liczbę rund do rozegrania');
 
-  playerScore = 0;
-  computerScore = 0;
-  completeRounds = 0;
-  document.getElementById('maxRounds').innerHTML = maxRounds;
+  params.playerScore = 0;
+  params.computerScore = 0;
+  params.completeRounds = 0;
+  document.getElementById('maxRounds').innerHTML = params.maxRounds;
   scoreDestination();
 
-  if (!maxRounds || isNaN(maxRounds) || maxRounds === ''){
+  if (!params.maxRounds || isNaN(params.maxRounds) || params.maxRounds === ''){
    output.innerHTML = 'Podaj ilość rund!';
    blockButtons();
   }
@@ -104,30 +106,30 @@ var playerMove = function(playerMove) {
 var displayResults = function(winner, playerMove, computerMove) {
   if (winner === 'none') {
 		output.innerHTML = 'Remis! Wybrałeś '+ playerMove + ', komputer również wybrał ' + computerMove +'.'+'<br>';
-  completeRounds++;
+  params.completeRounds++;
 	}
   else if (winner === 'player') {
 		output.innerHTML = 'Wygrałeś! Wybrałeś ' + playerMove + ', a komputer wybrał ' + computerMove +'.'+'<br>';
-  playerScore++;
-  completeRounds++;
+  params.playerScore++;
+  params.completeRounds++;
   }
   else {
 		output.innerHTML = 'Przegrałeś! Wybrałeś ' + playerMove + ', a komputer wybrał ' + computerMove +'.'+'<br>';
-  computerScore++;
-  completeRounds++;
+  params.computerScore++;
+  params.completeRounds++;
   }
   scoreDestination();
 
-  if (maxRounds == completeRounds && playerScore > computerScore) {
+  if (params.maxRounds == params.completeRounds && params.playerScore > params.computerScore) {
     output.insertAdjacentHTML('beforeend','<br> Koniec gry! Wygrałeś! Naciśnij przycisk "Nowa gra", aby zagrać ponownie. <br>');
     blockButtons ();
   }
-  else if (maxRounds == completeRounds && playerScore < computerScore) {
+  else if (params.maxRounds == params.completeRounds && params.playerScore < params.computerScore) {
     output.insertAdjacentHTML('beforeend','<br> Koniec gry! Przegrałeś! Naciśnij przycisk "Nowa gra", aby zagrać ponownie. <br>');
     blockButtons ();
   }
-  else if (maxRounds == completeRounds && playerScore == computerScore) {
+  else if (params.maxRounds == params.completeRounds && params.playerScore == params.computerScore) {
     output.insertAdjacentHTML('beforeend','<br> Koniec gry! Remis! Naciśnij przycisk "Nowa gra", aby zagrać ponownie. <br>');
     blockButtons ();
   }
-};  
+};
