@@ -4,84 +4,107 @@
 <head>
   <meta charset="UTF-8">
   <title>Papier, kamień, nożyce</title>
-
-
-
-      <link rel="stylesheet" href="css/style.css">
-
-
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
- <div class="container">
-   <div class="game-header">
-     <div class="result">
-       <h2>Wynik Gracza:</h2>
-       <h4 id="playerScore">0</h4>
-     </div>
-     <div class="game-title">
-       <h1>Papier, Kamień, Nożyce</h1>
-       <h3>Wybierz swój ruch:</h3>
-   </div>
-     <div class="result">
-       <h2>Wynik komputera:</h2>
-       <h4 id="computerScore">0</h4>
-     </div>
-   </div>
-   <div class="game-buttons">
-    <div>
-      <button id="paper" class="paper player-move" data-move="papier"></button>
-    </div>
-    <div>
-      <button id="rock" class="rock player-move" data-move="kamień"></button>
-    </div>
-    <div>
-      <button id="scissors" class="scissors player-move" data-move="nożyce"></button>
-    </div>
-  </div>
-  <div>
-    <h2>Runda: <span id="completeRounds">0</span>/<span id="maxRounds">0</span></h2>
-  </div>
-  <div id="output" class="output">Naciśnij przycisk "Nowa gra", aby zagrać.
-  </div>
-  <button id="newGame" class="newgame">Nowa gra</button>
- </div>
- <div class="overlay" id="win">
-		<div class="modal win">
-			<a href="#" id="data" class="close">x</a>
-			<header>Koniec gry! Wygrałeś!</header>
-			<div class="content">
-				<p>Naciśnij przycisk "Nowa gra", aby zagrać ponownie.</p>
-  	  </div>
-     </div>
-    </div>
-		<div class="overlay" id="lost">
-			<div class="modal lost">
-				<a href="#" id="data" class="close">x</a>
-				<header>Koniec gry! Przegrałeś!</header>
-				<div class="content">
-					<p>Naciśnij przycisk "Nowa gra", aby zagrać ponownie.</p>
-	      </div>
-       </div>
+  <div class="container">
+    <div class="game-header">
+      <div class="result">
+        <h2>Wynik Gracza:</h2>
+        <h4 id="playerScore">0</h4>
       </div>
-		<div class="overlay" id="draw">
-			<div class="modal draw">
-				<a href="#" id="data" class="close">x</a>
-				<header>Koniec gry! Remis!</header>
-				<div class="content">
-					<p>Naciśnij przycisk "Nowa gra", aby zagrać ponownie.</p>
-				</div>
-       </div>
+      <div class="game-title">
+        <h1>Papier, Kamień, Nożyce</h1>
+        <h3>Wybierz swój ruch:</h3>
+    </div>
+      <div class="result">
+        <h2>Wynik komputera:</h2>
+        <h4 id="computerScore">0</h4>
       </div>
-</body>
-
-
+    </div>
+    <div class="game-buttons">
+     <div>
+       <button id="paper" class="paper player-move" data-move="papier"></button>
+     </div>
+     <div>
+       <button id="rock" class="rock player-move" data-move="kamień"></button>
+     </div>
+     <div>
+       <button id="scissors" class="scissors player-move" data-move="nożyce"></button>
+     </div>
+   </div>
+   <div>
+     <h2>Runda: <span id="completeRounds">0</span>/<span id="maxRounds">0</span></h2>
+   </div>
+   <div id="output" class="output">Naciśnij przycisk "Nowa gra", aby zagrać.
+   </div>
+   <button id="newGame" class="newgame">Nowa gra</button>
+  </div>
+  <div class="overlay" id="win">
+ 		<div class="modal win">
+ 			<a href="#" id="data" class="close">x</a>
+ 			<header>Koniec gry! Wygrałeś!</header>
+ 			<div class="content">
+ 				<p>Naciśnij przycisk "Nowa gra", aby zagrać ponownie.</p>
+   	  </div>
+       <table>
+         <thead>
+           <tr>
+             <th>Runda</th>
+             <th>Twój ruch</th>
+             <th>Ruch komputera</th>
+             <th>Wynik</th>
+           </tr>
+         </thead>
+         <tbody id="tbody-win">
+         </tbody>
+       </table>
+      </div>
+     </div>
+ 		<div class="overlay" id="lost">
+ 			<div class="modal lost">
+ 				<a href="#" id="data" class="close">x</a>
+ 				<header>Koniec gry! Przegrałeś!</header>
+ 				<div class="content">
+ 					<p>Naciśnij przycisk "Nowa gra", aby zagrać ponownie.</p>
+ 	      </div>
+         <table>
+           <thead>
+             <tr>
+               <th>Runda</th>
+               <th>Twój ruch</th>
+               <th>Ruch komputera</th>
+               <th>Wynik</th>
+             </tr>
+           </thead>
+           <tbody id="tbody-lost">
+           </tbody>
+         </table>
+        </div>
+       </div>
+ 		<div class="overlay" id="draw">
+ 			<div class="modal draw">
+ 				<a href="#" id="data" class="close">x</a>
+ 				<header>Koniec gry! Remis!</header>
+ 				<div class="content">
+ 					<p>Naciśnij przycisk "Nowa gra", aby zagrać ponownie.</p>
+ 				</div>
+         <table>
+           <thead>
+             <tr>
+               <th>Runda</th>
+               <th>Twój ruch</th>
+               <th>Ruch komputera</th>
+               <th>Wynik</th>
+             </tr>
+           </thead>
+           <tbody id="tbody-draw">
+           </tbody>
+         </table>
+        </div>
+       </div>
 
     <script  src="js/index.js"></script>
-
-
-
-
-</body>
-
+  </body>
 </html>
